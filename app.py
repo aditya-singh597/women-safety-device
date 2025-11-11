@@ -12,6 +12,10 @@ def trigger():
     print("Received from ESP32:", data)
     return jsonify({"status": "received", "message": "Data logged successfully"})
 
+import os
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+    port = int(os.environ.get('PORT', 10000))  # use Render’s assigned port or 10000 by default
+    app.run(host='0.0.0.0', port=port)
+
 
