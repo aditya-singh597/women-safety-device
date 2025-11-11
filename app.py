@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import os
 
 app = Flask(__name__)
 
@@ -9,13 +10,11 @@ def home():
 @app.route('/trigger', methods=['POST'])
 def trigger():
     data = request.get_json()
-    print("Received from ESP32:", data)
-    return jsonify({"status": "received", "message": "Data logged successfully"})
-
-import os
+    print("Received data:", data)
+    return jsonify({"status": "OK", "message": "Data received successfully"}), 200
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 10000))  # use Render’s assigned port or 10000 by default
+    port = int(os.environ.get('PORT', 5000))  # Render assigns this automatically
     app.run(host='0.0.0.0', port=port)
 
 
