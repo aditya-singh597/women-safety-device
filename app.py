@@ -13,5 +13,5 @@ def trigger():
     return jsonify({"status": "received", "message": "Data logged successfully"})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=10000)
 
